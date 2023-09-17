@@ -1,0 +1,134 @@
+.node {
+    min-width: 200px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#node-border {
+    background-color: rgb(54, 54, 54);
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#title {
+    background-color: rgb(45, 94, 51);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    flex-grow: 1;
+    align-self: stretch;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+#title-label {
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    white-space: normal;
+    font-size: 25px;
+    -unity-font-style: bold;
+    text-overflow: ellipsis;
+    align-self: center;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+#input {
+    align-items: center;
+}
+
+#output {
+    align-items: center;
+}
+
+#selection-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-left-color: rgb(0, 255, 238);
+    border-right-color: rgb(0, 255, 238);
+    border-top-color: rgb(0, 255, 238);
+    border-bottom-color: rgb(0, 255, 238);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#divider {
+    background-color: rgb(125, 125, 125);
+    min-height: 1px;
+}
+
+#note {
+    flex-direction: row;
+    font-size: 10px;
+    -unity-font-style: italic;
+    white-space: nowrap;
+    -unity-text-align: lower-center;
+    color: rgb(173, 173, 173);
+    flex-grow: 0;
+}
+
+#element-text {
+    flex-grow: 1;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+}
+
+#element {
+    align-self: stretch;
+    flex-grow: 1;
+    background-color: rgb(87, 84, 84);
+    flex-direction: row;
+}
+
+#title-icon {
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: auto;
+    -unity-background-scale-mode: scale-to-fit;
+    background-image: url('project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/buttonssosigninunity.png?fileID=2800000&guid=f9161c6c9e06dc445ada3ee16d991f90&type=3#buttonssosigninunity');
+}
+
+:hover > #selection-border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+:selected > #selection-border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+:hover:selected > #selection-border {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}

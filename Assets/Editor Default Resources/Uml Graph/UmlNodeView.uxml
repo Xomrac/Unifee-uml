@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor%20Default%20Resources/Uml%20Graph/NodeViewStyle.uss?fileID=7433441132597879392&amp;guid=59324148aed1d1b428d9220b24fc6c38&amp;type=3#NodeViewStyle" />
+    <ui:VisualElement name="node-border" picking-mode="Ignore" style="align-self: stretch; flex-grow: 1;">
+        <ui:VisualElement name="input" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;" />
+        <ui:VisualElement name="output" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;" />
+        <ui:VisualElement name="contents" focusable="true" style="flex-grow: 1;">
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="title" style="align-items: center; align-self: center; justify-content: center; min-height: auto; max-width: none; max-height: none;">
+                    <ui:VisualElement name="icon-background" style="flex-grow: 0; align-items: stretch; align-self: stretch; justify-content: space-around; flex-wrap: nowrap; width: 20%; -unity-background-scale-mode: scale-to-fit; background-color: rgb(54, 54, 54);">
+                        <ui:VisualElement name="title-icon" style="flex-grow: 1; align-items: stretch; align-self: center; justify-content: space-around; flex-wrap: nowrap; width: 90%; -unity-background-scale-mode: scale-to-fit; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 90%;" />
+                    </ui:VisualElement>
+                    <LabelAutoFit tabindex="-1" text="Player" min-font-size="20" name="title-label" max-font-size="60" style="flex-direction: row; align-self: stretch; justify-content: flex-end; align-items: center; flex-shrink: 1; -unity-text-outline-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="subtitle" style="align-items: stretch; align-self: stretch; justify-content: flex-start; flex-direction: row;">
+                    <ui:Label name="note" text="Service Locator" class="unity-text-element unity-label" style="-unity-text-align: middle-center; font-size: 10%; flex-grow: 1; flex-shrink: 1; width: 33%; align-self: stretch; align-items: center;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="divider" class="horizontal" />
+            </ui:VisualElement>
+            <ui:VisualElement name="middle" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="elements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: stretch; justify-content: flex-start; align-self: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+</ui:UXML>

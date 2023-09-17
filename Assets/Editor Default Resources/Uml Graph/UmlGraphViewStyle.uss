@@ -1,0 +1,7 @@
+GridBackground
+{
+    --grid-background-color: var(--uml-colors-grid-light-grey-1);
+    --line-color: var(--uml-colors-grid-light-grey-2);
+    --thick-line-color: var(--uml-colors-grid-light-grey-3);
+    --spacing: var(--uml-metrics-grid-25);
+}
