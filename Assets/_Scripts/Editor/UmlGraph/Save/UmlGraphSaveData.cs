@@ -26,6 +26,7 @@ namespace _Scripts.Editor.UmlGraph.Save
 		{
 			fileName = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(this));
 		}
+		
 
 		public void SaveDatas(IEnumerable<UmlGroupSaveData> groups, IEnumerable<UmlNodeSaveData> nodes, IEnumerable<UmlConnectionSaveData> connections)
 		{

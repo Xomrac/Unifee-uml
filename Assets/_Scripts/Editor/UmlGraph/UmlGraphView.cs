@@ -22,6 +22,8 @@ public class UmlGraphView : GraphView
 	private List<UmlGroup> groups;
 	public List<UmlNode> graphNodes;
 	public List<UmlConnection> connections;
+	public bool connectionDeleteOn = false;
+	public ConnectionType currentConnectionType;
 
 	public void SaveGraph()
 	{
@@ -161,7 +163,7 @@ public class UmlGraphView : GraphView
 				{
 					continue;
 				}
-				var connection = new UmlConnection(firstNode, secondNode);
+				var connection = new UmlConnection(firstNode, secondNode,connectionData.ConnectionType);
 				var lineElement = new ConnectionLine
 				{
 					name = $"{firstNode.title} to {secondNode.title}",
@@ -183,7 +185,7 @@ public class UmlGraphView : GraphView
 				void OnGenerateVisualContent(MeshGenerationContext cxt)
 				{
 					Painter2D painter = cxt.painter2D;
-					painter.strokeColor = Color.white;
+					painter.strokeColor = connection.connectionsColor[connectionData.ConnectionType];
 					painter.lineJoin = LineJoin.Round;
 					painter.lineCap = LineCap.Round;
 					painter.lineWidth = 5.0f;
@@ -197,6 +199,38 @@ public class UmlGraphView : GraphView
 			}
 		}
 	}
+	
+	public void DeleteConnection(UmlNode clickedNode)
+	{
+		for (int i = connections.Count - 1; i >= 0; i--)
+		{
+			UmlConnection currentConnection = connections[i];
+			if (currentConnection.Nodes.Contains(selectedNode) && currentConnection.Nodes.Contains(clickedNode))
+			{
+				connections.Remove(currentConnection);
+				contentViewContainer.Remove(currentConnection.connectionLine);
+			}
+		}
+		selectedNode = null;
+		SaveGraph();
+	}
+
+	public void DeleteConnections()
+	{
+		for (int i = connections.Count - 1; i >= 0; i--)
+		{
+			UmlConnection currentConnection = connections[i];
+			if (currentConnection.Nodes.Contains(selectedNode))
+			{
+				connections.Remove(currentConnection);
+				contentViewContainer.Remove(currentConnection.connectionLine);
+			}
+		}
+		selectedNode = null;
+		SaveGraph();
+	}
+	
+	// public void DeleteConnection()
 
 	public void CreateConnection(UmlConnection umlConnection)
 	{
@@ -222,7 +256,7 @@ public class UmlGraphView : GraphView
 		void OnGenerateVisualContent(MeshGenerationContext cxt)
 		{
 			Painter2D painter = cxt.painter2D;
-			painter.strokeColor = Color.white;
+			painter.strokeColor = umlConnection.connectionsColor[umlConnection.connectionType];
 			painter.lineJoin = LineJoin.Round;
 			painter.lineCap = LineCap.Round;
 			painter.lineWidth = 5.0f;

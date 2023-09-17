@@ -58,6 +58,8 @@ public class UmlNode : Node
 
 	private ClickSelector clickSelector;
 
+
+
 	public UmlNodeSaveData GetSaveData()
 	{
 		var groupId = group != null ? group.ID : "";
@@ -88,12 +90,20 @@ public class UmlNode : Node
 		
 		RegisterCallback<MouseDownEvent>(_ =>
 		{
-			if ((graph as UmlGraphView).selectedNode==this|| (graph as UmlGraphView).selectedNode==null)
+			if (graph.selectedNode==this || graph.selectedNode==null)
 			{
 				return;
 			}
-			var connection = new UmlConnection((graph as UmlGraphView).selectedNode, this);
-			(graph as UmlGraphView).CreateConnection(connection);
+			if (!graphView.connectionDeleteOn)
+			{
+				var connection = new UmlConnection(graph.selectedNode, this,graphView.currentConnectionType);
+				graph.CreateConnection(connection);
+			}
+			else
+			{
+				graph.DeleteConnection(this);
+			}
+			
 		});
 		Color MONOBEHAVIOUR_COLOR = new(253 / 255f, 208 / 255f, 23 / 255f, 1);
 		Color SCRIPTABLEOBJECT_COLOR = new(152 / 255f, 103 / 255f, 197 / 255f, 1);
@@ -237,23 +247,61 @@ public class UmlNode : Node
 	{
 		base.BuildContextualMenu(evt);
 
-		(graphView as UmlGraphView).selectedNode = this;
-		Debug.Log((graphView as UmlGraphView).selectedNode);
+		graphView.selectedNode = this;
+		Debug.Log(graphView.selectedNode);
 		if (evt.target is UmlNode)
 		{
-			evt.menu.AppendAction("Deb node", _ => Debug.Log(this));
 			evt.menu.AppendAction("Edit Node", _ =>
 			{
-				Debug.Log((graphView as UmlGraphView).selectedNode);
-				NodeEditingWindow.ShowEditWindow((graphView as UmlGraphView).selectedNode);
+				Debug.Log(graphView.selectedNode);
+				NodeEditingWindow.ShowEditWindow(graphView.selectedNode);
 			});
-			evt.menu.AppendAction("Print Pos",_=> Debug.Log(GetPosition().position));
-			evt.menu.AppendAction("Connections/Create Connection", _ =>
+			evt.menu.AppendAction("Connections/Create Connection/Association", _ =>
 			{
-				(graphView as UmlGraphView).selectedNode = this;
-				Debug.Log((graphView as UmlGraphView).selectedNode.className);
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Association;
+				graphView.selectedNode = this;
 			});
-			evt.menu.AppendAction("Connections/Remove All Connections", _ => Debug.Log("Remove All Connections"));
+			evt.menu.AppendAction("Connections/Create Connection/Inheritance", _ =>
+			{
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Inheritance;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Create Connection/Implementation", _ =>
+			{
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Implementation;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Create Connection/Dependency", _ =>
+			{
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Dependency;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Create Connection/Aggregation", _ =>
+			{
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Aggregation;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Create Connection/Composition", _ =>
+			{
+				graphView.connectionDeleteOn = false;
+				graphView.currentConnectionType = ConnectionType.Composition;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Delete Connection", _ =>
+			{
+				graphView.connectionDeleteOn = true;
+				graphView.selectedNode = this;
+			});
+			evt.menu.AppendAction("Connections/Remove All Connections", _ =>
+			{
+				graphView.selectedNode = this;
+				graphView.DeleteConnections();
+			});
 		}
 	}
 }

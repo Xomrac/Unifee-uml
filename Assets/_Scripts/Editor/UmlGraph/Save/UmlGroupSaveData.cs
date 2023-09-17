@@ -8,8 +8,8 @@ namespace _Scripts.Editor.UmlGraph.Save
 	public class UmlGroupSaveData
 	{
 		[field: SerializeField] public string Name { get; set; }
-		[field: SerializeField] public string Guid { get; set; }
-		[field: SerializeField] public Vector2 Position { get; set; }
+		[field: SerializeField, OnlyReadable] public string Guid { get; set; }
+		[field: SerializeField,OnlyReadable] public Vector2 Position { get; set; }
 
 		public UmlGroupSaveData(string guid, string name, Vector2 position)
 		{

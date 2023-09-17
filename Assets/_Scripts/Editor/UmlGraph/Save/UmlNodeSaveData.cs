@@ -10,12 +10,12 @@ namespace _Scripts.Editor.UmlGraph.Save
 	{
 		
 		[field: SerializeField]public string ClassName { get; set; }
-		[field: SerializeField] public string Guid { get; set; }
+		[field: SerializeField,OnlyReadable] public string Guid { get; set; }
 		[field: SerializeField,TextArea]public string ClassElements { get; set; }
 		[field: SerializeField]public string ClassNote { get; set; }
 		[field: SerializeField]public string ClassGroup { get; set; }
 		[field: SerializeField]public ClassType ClassType { get; set; }
-		[field: SerializeField]public Vector2 Position { get; set; }
+		[field: SerializeField,OnlyReadable]public Vector2 Position { get; set; }
 
 		public UmlNodeSaveData(string guid, string className, string classElements, string classNote, string classGroup, ClassType classType, Vector2 position)
 		{
